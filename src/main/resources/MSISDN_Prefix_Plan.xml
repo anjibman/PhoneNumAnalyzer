@@ -1,0 +1,14 @@
+<ROOT>
+<NTC_Cellular>
+<MSISDN_Prefix>984</MSISDN_Prefix>
+<MSISDN_Prefix>985</MSISDN_Prefix>
+<MSISDN_Prefix>986</MSISDN_Prefix>
+<MSISDN_Prefix>974</MSISDN_Prefix>
+</NTC_Cellular>
+<UTL_Cellular>
+<MSISDN_Prefix>972</MSISDN_Prefix>
+</UTL_Cellular>
+<SMART_Cellular>
+<MSISDN_Prefix>961</MSISDN_Prefix>
+</SMART_Cellular>
+</ROOT>
