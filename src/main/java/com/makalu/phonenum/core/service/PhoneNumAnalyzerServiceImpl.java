@@ -102,7 +102,7 @@ public class PhoneNumAnalyzerServiceImpl implements PhoneNumAnalyzerService {
 		
 		fileUtil.createDir(todayFolder);
 		fileUtil.generateCleanFile("output.txt", currentFilePrefix + "result.txt");
-		fileUtil.deleteFile("output.txt");
+		//fileUtil.deleteFile("output.txt");
 		fileUtil.writeListToFile(successPhoneNum, currentFilePrefix + "success.txt");
 		fileUtil.writeListToFile(failedPhoneNum, currentFilePrefix + "error.txt");
 		fileUtil.writeListToFile(invalidPhoneNum, currentFilePrefix + "invalid.txt");
