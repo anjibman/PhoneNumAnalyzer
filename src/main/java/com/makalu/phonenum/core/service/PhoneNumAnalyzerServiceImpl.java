@@ -45,6 +45,11 @@ public class PhoneNumAnalyzerServiceImpl implements PhoneNumAnalyzerService {
 				phoneDto.setStatus("Invalid");
 				invalidPhoneNum.add(phone);
 			} else {
+				try {
+				    Thread.sleep(30000);                 
+				} catch(InterruptedException ex) {
+				    Thread.currentThread().interrupt();
+				}
 				phoneDto = sendCommandFor(phone);
 			}
 			phoneDtoList.add(phoneDto);
@@ -82,16 +87,6 @@ public class PhoneNumAnalyzerServiceImpl implements PhoneNumAnalyzerService {
 		
 	}
 
-	private void reRunFailed() {
-		System.out.println("Re-running failed phone number...");
-		for(String phone : failedPhoneNum) {
-			System.out.println("Processing for " + phone + " .....");
-			sendCommandFor(phone);
-			System.out.println("========================================");
-		}
-		System.out.println("Re-run for failed phone number completes.");
-	}
-
 	public void generateOutputFiles() {
 		FileUtil fileUtil = new FileUtil();
 		Date now = new Date();
@@ -102,7 +97,7 @@ public class PhoneNumAnalyzerServiceImpl implements PhoneNumAnalyzerService {
 		
 		fileUtil.createDir(todayFolder);
 		fileUtil.generateCleanFile("output.txt", currentFilePrefix + "result.txt");
-		//fileUtil.deleteFile("output.txt");
+		fileUtil.deleteFile("output.txt");
 		fileUtil.writeListToFile(successPhoneNum, currentFilePrefix + "success.txt");
 		fileUtil.writeListToFile(failedPhoneNum, currentFilePrefix + "error.txt");
 		fileUtil.writeListToFile(invalidPhoneNum, currentFilePrefix + "invalid.txt");
