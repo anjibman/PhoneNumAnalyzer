@@ -45,7 +45,9 @@ public class TelnetUtil {
     	String runCmdOutput;
     	write(command);
     	do{
+    		//System.out.println("Start reading output.");
     		runCmdOutput = readUntil(prompt);
+    		//System.out.println("Command Output:" + runCmdOutput);
    			if(runCmdOutput.toLowerCase().contains("execute error:there has been a record with the same selector and number")) {
    				return "REPEATED";
    			}

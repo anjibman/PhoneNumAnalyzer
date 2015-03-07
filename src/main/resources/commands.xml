@@ -12,7 +12,6 @@
 <MSISDN_Command>Y</MSISDN_Command>
 </NTC_Cellular>
 
-
 <UTL_Cellular>
 <MSISDN_Command>set amo:mscs04;</MSISDN_Command>
 <MSISDN_Command>set:neid=14;</MSISDN_Command>

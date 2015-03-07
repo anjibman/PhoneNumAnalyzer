@@ -10,15 +10,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 import java.util.logging.Logger;
 
 public class FileUtil {
 	final Logger LOGGER = Logger.getLogger(FileUtil.class.getName());
 	
 	public List<String> generatePhoneList(String fileName) {
-		List<String> phoneList = new ArrayList<String>();
+		Set<String> phoneList = new HashSet<String>();
+		//List<String> phoneList = new ArrayList<String>();
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader(fileName));
@@ -34,7 +37,7 @@ public class FileUtil {
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
-		return phoneList;
+		return new ArrayList<String>(phoneList);
 	}
 
 	public void generateCleanFile(String dirtyFileName, String cleanFileName) {

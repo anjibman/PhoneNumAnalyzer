@@ -46,10 +46,11 @@ public class PhoneNumAnalyzerServiceImpl implements PhoneNumAnalyzerService {
 				invalidPhoneNum.add(phone);
 			} else {
 				try {
-				    Thread.sleep(30000);                 
+				    Thread.sleep(15000);                 
 				} catch(InterruptedException ex) {
 				    Thread.currentThread().interrupt();
 				}
+				System.out.println("Sending command for " + phone + " .....");
 				phoneDto = sendCommandFor(phone);
 			}
 			phoneDtoList.add(phoneDto);
@@ -65,7 +66,8 @@ public class PhoneNumAnalyzerServiceImpl implements PhoneNumAnalyzerService {
 		PhoneDto phoneDto = new PhoneDto();
 		phoneDto.setPhoneNumber(phone);
 		runCommandList = generateTemplateCommandList(phone);
-		String status = executeCommand(runCommandList);;
+		//System.out.println("Run command list: " + runCommandList);
+		String status = executeCommand(runCommandList);
 		switch (status.toUpperCase()) {
 			case "SUCCESS": 
 				phoneDto.setStatus("Success");
@@ -84,7 +86,6 @@ public class PhoneNumAnalyzerServiceImpl implements PhoneNumAnalyzerService {
 				break;
 		}
 		return phoneDto;
-		
 	}
 
 	public void generateOutputFiles() {
@@ -134,6 +135,7 @@ public class PhoneNumAnalyzerServiceImpl implements PhoneNumAnalyzerService {
 		for (String runCmd : runCommandList) {
 			System.out.println(runCmd);
 			String runCmdStatus = telnetUtil.sendCommand(runCmd);
+			System.out.println("Status returned for cmd: " + runCmdStatus);
 			if(runCmdStatus.equalsIgnoreCase("REPEATED") || runCmdStatus.equalsIgnoreCase("FAILED")) {
 				return runCmdStatus;
 			}
